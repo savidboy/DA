@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dulce Aroma Floristería · Medellín</title>
+<meta content="Dulce Aroma Floristería: arreglos florales únicos y personalizados en Medellín. Pedidos y consultas por WhatsApp." name="description"/>
+<meta content="Dulce Aroma Floristería · Medellín" property="og:title"/>
+<meta content="Arreglos florales únicos y personalizados en Medellín. Pedidos y consultas por WhatsApp." property="og:description"/>
+<meta content="img/portada.webp" property="og:image"/>
+<meta content="#1f3628" name="theme-color"/>
+<style>
+  :root{
+    --verde-hoja: #1f3628;
+    --verde-profundo: #16261d;
+    --crema: #fbf5ec;
+    --crema-suave: #f3ead9;
+    --rosa-polvo: #c88a93;
+    --rosa-suave: #e7c6c9;
+    --dorado: #a6793d;
+    --tinta: #2b2420;
+    --ink-suave: #55493f;
+    --borde: rgba(43,36,32,0.12);
+    --sombra: 0 30px 60px -30px rgba(22,38,29,0.35);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--crema);
+    color:var(--tinta);
+    font-family:'Work Sans', sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    letter-spacing:-0.01em;
+    margin:0;
+  }
+  .eyebrow{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:400;
+    font-size:0.95rem;
+    letter-spacing:0.03em;
+    color:var(--rosa-polvo);
+  }
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+
+  /* --- vine signature element --- */
+  #vine-svg{
+    position:absolute;
+    top:0; left:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+    z-index:0;
+  }
+  #vine-page{position:relative;}
+  #vine-page > *:not(#vine-svg){position:relative;z-index:1;}
+  .vine-path{
+    fill:none;
+    stroke:var(--rosa-polvo);
+    stroke-width:1.4;
+    stroke-linecap:round;
+    opacity:0.55;
+  }
+  .vine-mark{
+    opacity:0;
+    transform:scale(0.4);
+    transform-box:fill-box;
+    transform-origin:center;
+    transition:opacity 0.8s ease, transform 0.8s cubic-bezier(.2,.9,.3,1.3);
+  }
+  .vine-mark.show{opacity:1;transform:scale(1);}
+
+  /* --- nav --- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(251,245,236,0.86);
+    backdrop-filter: blur(10px);
+    border-bottom:1px solid var(--borde);
+  }
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    padding-top:14px; padding-bottom:14px;
+  }
+  .brand{display:flex;align-items:center;gap:12px;}
+  .brand img{width:54px;height:54px;border-radius:50%;object-fit:cover;box-shadow:0 4px 14px rgba(43,36,32,0.18);}
+  .brand-name{font-family:'Fraunces',serif;font-size:1.25rem;font-weight:500;}
+  .brand-name span{display:block;font-family:'Work Sans',sans-serif;font-weight:400;font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-suave);}
+  .btn{
+    display:inline-flex; align-items:center; gap:9px;
+    padding:12px 22px;
+    border-radius:999px;
+    font-family:'Work Sans',sans-serif;
+    font-weight:500;
+    font-size:0.92rem;
+    text-decoration:none;
+    border:1px solid transparent;
+    cursor:pointer;
+    transition:transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  }
+  .btn-primary{background:var(--verde-hoja);color:var(--crema);}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 26px -12px rgba(31,54,40,0.55);}
+  .btn-ghost{border-color:var(--tinta); background:transparent;}
+  .btn-ghost:hover{background:var(--tinta);color:var(--crema);}
+  .btn svg{width:17px;height:17px;flex-shrink:0;}
+
+  /* --- hero --- */
+  .hero{
+    position:relative;
+    padding:96px 0 110px;
+    overflow:hidden;
+  }
+  .hero .wrap{
+    display:grid;
+    grid-template-columns:1.05fr 0.95fr;
+    gap:56px;
+    align-items:center;
+    position:relative;
+    z-index:1;
+  }
+  .hero h1{
+    font-size:clamp(2.5rem, 4.4vw, 3.7rem);
+    line-height:1.08;
+    margin-top:14px;
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--rosa-polvo);
+  }
+  .hero p.lead{
+    margin-top:24px;
+    font-size:1.08rem;
+    color:var(--ink-suave);
+    max-width:46ch;
+  }
+  .hero-ctas{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap;}
+  .hero-figure{
+    position:relative;
+    border-radius:150px 20px 150px 20px;
+    overflow:hidden;
+    box-shadow:var(--sombra);
+    aspect-ratio:4/3.1;
+  }
+  .hero-figure img{width:100%;height:100%;object-fit:cover;}
+  .hero-figure .tag{
+    position:absolute; left:20px; bottom:20px;
+    max-width:calc(100% - 40px);
+    background:rgba(251,245,236,0.92);
+    padding:11px 18px;
+    border-radius:14px;
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-size:0.92rem;
+    box-shadow:0 10px 24px rgba(22,38,29,0.2);
+  }
+  .stat-row{
+    display:flex; gap:34px; margin-top:44px; flex-wrap:wrap;
+  }
+  .stat-row div{border-left:2px solid var(--rosa-suave);padding-left:14px;}
+  .stat-row strong{display:block;font-family:'Fraunces',serif;font-size:1.05rem;}
+  .stat-row span{font-size:0.85rem;color:var(--ink-suave);}
+
+  /* --- section basics --- */
+  section{position:relative;padding:88px 0;}
+  .section-head{max-width:640px;margin-bottom:52px;}
+  .section-head h2{font-size:clamp(1.9rem,3vw,2.5rem);margin-top:10px;}
+  .section-head p{color:var(--ink-suave);margin-top:16px;font-size:1.02rem;}
+
+  /* --- about / historia --- */
+  .about{background:var(--crema-suave);}
+  .about .wrap{display:grid;grid-template-columns:0.9fr 1.1fr;gap:64px;align-items:center;}
+  .about-figure{border-radius:20px 130px 20px 130px;overflow:hidden;box-shadow:var(--sombra);background:#e8dfd2;}
+  .about-figure img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:52% center;}
+  .about ul{list-style:none;margin:26px 0 0;padding:0;display:grid;gap:16px;}
+  .about li{display:flex;gap:12px;align-items:flex-start;font-size:0.98rem;color:var(--ink-suave);}
+  .about li svg{flex-shrink:0;margin-top:3px;width:18px;height:18px;color:var(--rosa-polvo);}
+
+  /* --- catálogo (dark) --- */
+  .catalogo{background:var(--verde-profundo);color:var(--crema);}
+  .catalogo .eyebrow{color:var(--rosa-suave);}
+  .catalogo .section-head p{color:rgba(251,245,236,0.72);}
+  .catalogo .wrap{display:grid;grid-template-columns:1.05fr 0.85fr;gap:56px;align-items:center;}
+  .catalogo-figure{border-radius:24px;overflow:hidden;box-shadow:0 40px 80px -30px rgba(0,0,0,0.55);background:#2a3a30;}
+  .catalogo-figure img{width:100%;aspect-ratio:1/1;object-fit:cover;object-position:center;}
+  .chip-list{display:grid;gap:14px;}
+  .chip{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:16px 20px;
+    border:1px solid rgba(251,245,236,0.18);
+    border-radius:14px;
+    transition:background 0.25s ease, border-color 0.25s ease;
+  }
+  .chip:hover{background:rgba(251,245,236,0.06);border-color:rgba(251,245,236,0.35);}
+  .chip .n{font-family:'Fraunces',serif;font-style:italic;color:var(--rosa-suave);font-size:0.85rem;}
+  .chip .t{font-weight:500;}
+  .chip .d{font-size:0.85rem;color:rgba(251,245,236,0.62);margin-top:3px;}
+
+  /* --- pasos --- */
+  .pasos .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:36px;}
+  .paso{
+    background:var(--crema);
+    border:1px solid var(--borde);
+    border-radius:20px;
+    padding:34px 28px;
+    position:relative;
+  }
+  .paso .marca{
+    font-family:'Fraunces',serif;font-style:italic;color:var(--rosa-polvo);font-size:0.95rem;
+  }
+  .paso h3{margin-top:12px;font-size:1.28rem;}
+  .paso p{margin-top:12px;color:var(--ink-suave);font-size:0.96rem;}
+
+  /* --- cta final --- */
+  .cta-final{
+    background:linear-gradient(135deg, var(--verde-hoja), var(--verde-profundo));
+    color:var(--crema);
+    border-radius:28px;
+    margin:0 32px;
+    padding:64px 48px;
+    text-align:center;
+    box-shadow:var(--sombra);
+  }
+  .cta-final h2{font-size:clamp(1.8rem,3vw,2.4rem);}
+  .cta-final p{margin-top:14px;color:rgba(251,245,236,0.78);max-width:52ch;margin-left:auto;margin-right:auto;}
+  .cta-final .hero-ctas{justify-content:center;margin-top:30px;}
+  .cta-final .btn-ghost{border-color:rgba(251,245,236,0.6);color:var(--crema);}
+  .cta-final .btn-ghost:hover{background:var(--crema);color:var(--verde-profundo);}
+  .cta-final .btn-primary{background:var(--crema);color:var(--verde-profundo);}
+  .cta-final .btn-primary:hover{box-shadow:0 14px 26px -12px rgba(0,0,0,0.4);}
+
+  footer{padding:60px 0 40px;}
+  footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px;}
+  .foot-brand{display:flex;align-items:center;gap:12px;}
+  .foot-brand img{width:46px;height:46px;border-radius:50%;object-fit:cover;}
+  footer nav{display:flex;gap:26px;font-size:0.9rem;color:var(--ink-suave);flex-wrap:wrap;}
+  .copy{font-size:0.8rem;color:var(--ink-suave);opacity:0.75;margin-top:26px;text-align:center;}
+
+  @media (max-width: 860px){
+    .hero .wrap, .about .wrap, .catalogo .wrap{grid-template-columns:1fr;}
+    .hero-figure{order:-1;}
+    .pasos .wrap{grid-template-columns:1fr;}
+    .cta-final{margin:0 16px;padding:48px 26px;}
+    .wrap{padding:0 20px;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .vine-mark{transition:none;opacity:1;transform:none;}
+  }
+
+/* --- galeria de trabajos / inspiraciones --- */
+.galeria{
+  background:var(--crema);
+}
+.galeria-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:28px;
+  margin-bottom:34px;
+  flex-wrap:wrap;
+}
+.galeria-head .section-head{margin-bottom:0;}
+.galeria-filtros{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.galeria-filtro{
+  border:1px solid var(--borde);
+  background:transparent;
+  color:var(--ink-suave);
+  padding:9px 16px;
+  border-radius:999px;
+  cursor:pointer;
+  font:500 0.88rem 'Work Sans',sans-serif;
+  transition:all .2s ease;
+}
+.galeria-filtro:hover,
+.galeria-filtro.active{
+  background:var(--verde-hoja);
+  color:var(--crema);
+  border-color:var(--verde-hoja);
+}
+.galeria-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+}
+.galeria-card{
+  margin:0;
+  border-radius:20px;
+  overflow:hidden;
+  background:#fff;
+  border:1px solid var(--borde);
+  box-shadow:0 14px 32px -22px rgba(22,38,29,.38);
+}
+.galeria-card img{
+  width:100%;
+  aspect-ratio:4/5;
+  object-fit:cover;
+  transition:transform .35s ease;
+}
+.galeria-card:hover img{transform:scale(1.03);}
+.galeria-card figcaption{
+  padding:14px 15px 16px;
+}
+.galeria-card strong{
+  display:block;
+  font-family:'Fraunces',serif;
+  font-size:1.05rem;
+}
+.galeria-card span{
+  display:block;
+  margin-top:4px;
+  font-size:.8rem;
+  color:var(--ink-suave);
+}
+.galeria-empty{
+  display:none;
+  padding:30px 0;
+  color:var(--ink-suave);
+}
+@media (max-width:1000px){
+  .galeria-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media (max-width:560px){
+  .galeria-grid{grid-template-columns:1fr;}
+  .galeria-head{align-items:flex-start;}
+}
+</style>
+</head>
+<body>
+<div id="vine-page">
+<svg id="vine-svg" preserveaspectratio="none"><path class="vine-path" d="" id="vine-line"></path></svg>
+<header>
+<nav class="wrap">
+<div class="brand">
+<img alt="Logo Dulce Aroma Floristería" loading="lazy" src="img/logo.webp"/>
+<div class="brand-name">Dulce Aroma<span>Floristería · Medellín</span></div>
+</div>
+<a class="btn btn-primary" href="https://wa.me/573148325657?text=Hola%2C%20vi%20su%20p%C3%A1gina%20web%20de%20Dulce%20Aroma%20y%20quisiera%20informaci%C3%B3n%20sobre%20sus%20arreglos%20florales." rel="noopener" target="_blank">
+<svg fill="currentColor" viewbox="0 0 24 24"><path d="M20.5 3.5A11.7 11.7 0 0 0 12 0C5.6 0 .5 5.1.5 11.4c0 2 .5 4 1.5 5.7L0 24l7.1-1.9a11.9 11.9 0 0 0 4.9 1.1h0c6.4 0 11.5-5.1 11.5-11.4 0-3-1.2-5.9-3.4-8.3zM12 21.3c-1.5 0-3-.4-4.3-1.2l-.3-.2-4.2 1.1 1.1-4-.2-.3a9.3 9.3 0 0 1-1.4-4.9C2.7 6.3 6.8 2.3 12 2.3c2.5 0 4.9 1 6.7 2.8a9.2 9.2 0 0 1 2.8 6.4c0 5.4-4.1 9.8-9.5 9.8zm5.3-7.3c-.3-.1-1.7-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.4.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.5-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1.1 2.8 1.2 3c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3z"></path></svg>
+      WhatsApp
+    </a>
+</nav>
+</header>
+<!-- HERO -->
+<section class="hero">
+<div class="wrap">
+<div>
+<p class="eyebrow">Arreglos florales personalizados</p>
+<h1>Expresa tus sentimientos, hazlo con flores.</h1>
+<p class="lead">Desde nuestro taller en Medellín transformamos cada pedido en un recuerdo: ramos, cajas florales y combos con detalle, hechos a mano y a tu manera.</p>
+<div class="hero-ctas">
+<a class="btn btn-primary" href="https://wa.me/573148325657?text=Hola%2C%20vi%20su%20p%C3%A1gina%20web%20de%20Dulce%20Aroma%20y%20quisiera%20informaci%C3%B3n%20sobre%20sus%20arreglos%20florales." rel="noopener" target="_blank">
+<svg fill="currentColor" viewbox="0 0 24 24"><path d="M20.5 3.5A11.7 11.7 0 0 0 12 0C5.6 0 .5 5.1.5 11.4c0 2 .5 4 1.5 5.7L0 24l7.1-1.9a11.9 11.9 0 0 0 4.9 1.1h0c6.4 0 11.5-5.1 11.5-11.4 0-3-1.2-5.9-3.4-8.3zM12 21.3c-1.5 0-3-.4-4.3-1.2l-.3-.2-4.2 1.1 1.1-4-.2-.3a9.3 9.3 0 0 1-1.4-4.9C2.7 6.3 6.8 2.3 12 2.3c2.5 0 4.9 1 6.7 2.8a9.2 9.2 0 0 1 2.8 6.4c0 5.4-4.1 9.8-9.5 9.8zm5.3-7.3c-.3-.1-1.7-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.4.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.5-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1.1 2.8 1.2 3c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3z"></path></svg>
+          Pedir por WhatsApp
+        </a>
+<a class="btn btn-ghost" href="#catalogo">Ver colecciones</a>
+</div>
+<div class="stat-row">
+<div><strong>100% personalizado</strong><span>colores, mensaje y presupuesto</span></div>
+<div><strong>Entrega en Medellín</strong><span>y municipios cercanos</span></div>
+<div><strong>Hecho a mano</strong><span>en nuestro taller</span></div>
+</div>
+</div>
+<div class="hero-figure">
+<img alt="Taller de Dulce Aroma Floristería con ramos de rosas, peonías e hidrangeas" loading="lazy" src="img/portada.webp"/>
+<div class="tag">Hecho a mano en nuestro taller</div>
+</div>
+</div>
+</section>
+<!-- ABOUT -->
+<section class="about" id="nosotros">
+<div class="wrap">
+<div class="about-figure">
+<img alt="Detalle del taller floral de Dulce Aroma Floristería" loading="lazy" src="img/portada.webp"/>
+</div>
+<div>
+<p class="eyebrow">El taller floral</p>
+<h2>Cada flor se elige a mano, cada ramo cuenta algo distinto.</h2>
+<p style="color:var(--ink-suave);margin-top:18px;">Somos una floristería de Medellín dedicada a los arreglos únicos y personalizados. Creemos que un ramo no debería verse igual al del catálogo: por eso ajustamos color, tamaño y detalle según la persona a la que va dirigido, para que cada entrega se sienta como un recuerdo inolvidable.</p>
+<ul>
+<li><svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M20 6L9 17l-5-5"></path></svg> Arreglos a la medida: tú eliges flores, colores y mensaje.</li>
+<li><svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M20 6L9 17l-5-5"></path></svg> Combos con peluche, chocolates, vino o globos.</li>
+<li><svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M20 6L9 17l-5-5"></path></svg> Pedidos y seguimiento directo por WhatsApp.</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- CATALOGO -->
+<section class="catalogo" id="catalogo">
+<div class="wrap">
+<div>
+<div class="catalogo-figure">
+<img alt="Colecciones de lujo Dulce Aroma: ramos, cajas florales y combos con regalo" loading="lazy" src="img/colecciones.webp"/>
+</div>
+</div>
+<div>
+<p class="eyebrow">Colecciones de lujo</p>
+<h2>Un arreglo para cada ocasión</h2>
+<p style="margin-bottom:30px;">Esta es solo una muestra de lo que armamos en el taller — cuéntanos la ocasión y el presupuesto, y preparamos algo a tu manera.</p>
+<div class="chip-list">
+<div class="chip"><div><div class="t">Ramos de temporada</div><div class="d">Rosas, gerberas, claveles y flores tropicales</div></div><span class="n">01</span></div>
+<div class="chip"><div><div class="t">Cajas florales</div><div class="d">En caja o florero, con moño y tarjeta</div></div><span class="n">02</span></div>
+<div class="chip"><div><div class="t">Combos con detalle</div><div class="d">Peluche, chocolates, vino o globos</div></div><span class="n">03</span></div>
+<div class="chip"><div><div class="t">Arreglos de autor</div><div class="d">Aves del paraíso, orquídeas y follaje fino</div></div><span class="n">04</span></div>
+</div>
+</div>
+</div>
+</section>
+<!-- PASOS -->
+
+<section class="galeria" id="inspiraciones">
+<div class="wrap">
+<div class="galeria-head">
+<div class="section-head">
+<p class="eyebrow">Inspiraciones florales</p>
+<h2>Algunas ideas para tu próximo arreglo</h2>
+<p>Una muestra visual de estilos y combinaciones que podemos adaptar a cada ocasión.</p>
+</div>
+<div aria-label="Filtrar inspiraciones" class="galeria-filtros">
+<button class="galeria-filtro active" data-filter="todos" type="button">Todos</button>
+<button class="galeria-filtro" data-filter="novias" type="button">Novias</button>
+<button class="galeria-filtro" data-filter="desayunos" type="button">Desayunos</button>
+<button class="galeria-filtro" data-filter="cumpleanos" type="button">Cumpleaños</button>
+<button class="galeria-filtro" data-filter="aniversarios" type="button">Aniversarios</button>
+<button class="galeria-filtro" data-filter="bodas" type="button">Bodas</button>
+<button class="galeria-filtro" data-filter="ramos" type="button">Ramos</button>
+<button class="galeria-filtro" data-filter="cajas" type="button">Cajas y combos</button>
+</div>
+</div>
+<div class="galeria-grid" id="galeria-grid"></div>
+<p class="galeria-empty" id="galeria-empty">No hay imágenes en esta categoría.</p>
+</div>
+</section>
+<section class="pasos">
+<div class="wrap" style="display:block;">
+<div class="section-head">
+<p class="eyebrow">Cómo pedir</p>
+<h2>Tres pasos y listo</h2>
+</div>
+</div>
+<div class="wrap">
+<div class="paso">
+<span class="marca">Primero</span>
+<h3>Escríbenos por WhatsApp</h3>
+<p>Cuéntanos la ocasión, el presupuesto y si tienes una idea en mente o prefieres que te propongamos algo.</p>
+</div>
+<div class="paso">
+<span class="marca">Luego</span>
+<h3>Personalizamos tu pedido</h3>
+<p>Ajustamos flores, colores, tarjeta y complementos (peluche, chocolates, vino o globos) contigo.</p>
+</div>
+<div class="paso">
+<span class="marca">Por último</span>
+<h3>Coordinamos la entrega</h3>
+<p>Confirmamos fecha, hora y dirección en Medellín y municipios cercanos.</p>
+</div>
+</div>
+</section>
+<!-- CTA FINAL -->
+<section style="padding-top:0;">
+<div class="wrap">
+<div class="cta-final">
+<p class="eyebrow" style="color:var(--rosa-suave);">Dulce Aroma Floristería</p>
+<h2>¿Ya sabes para quién es el ramo?</h2>
+<p>Escríbenos ahora y armamos tu arreglo a tiempo para la entrega.</p>
+<div class="hero-ctas">
+<a class="btn btn-primary" href="https://wa.me/573148325657?text=Hola%2C%20vi%20su%20p%C3%A1gina%20web%20de%20Dulce%20Aroma%20y%20quisiera%20informaci%C3%B3n%20sobre%20sus%20arreglos%20florales." rel="noopener" target="_blank">
+<svg fill="currentColor" viewbox="0 0 24 24"><path d="M20.5 3.5A11.7 11.7 0 0 0 12 0C5.6 0 .5 5.1.5 11.4c0 2 .5 4 1.5 5.7L0 24l7.1-1.9a11.9 11.9 0 0 0 4.9 1.1h0c6.4 0 11.5-5.1 11.5-11.4 0-3-1.2-5.9-3.4-8.3zM12 21.3c-1.5 0-3-.4-4.3-1.2l-.3-.2-4.2 1.1 1.1-4-.2-.3a9.3 9.3 0 0 1-1.4-4.9C2.7 6.3 6.8 2.3 12 2.3c2.5 0 4.9 1 6.7 2.8a9.2 9.2 0 0 1 2.8 6.4c0 5.4-4.1 9.8-9.5 9.8zm5.3-7.3c-.3-.1-1.7-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.4.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.5-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1.1 2.8 1.2 3c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3z"></path></svg>
+          314 832 5657
+        </a>
+<a class="btn btn-ghost" href="#nosotros">Conocer el taller</a>
+<a class="btn btn-ghost" href="https://www.facebook.com/profile.php?id=61593890547009" rel="noopener" target="_blank">Facebook</a>
+</div>
+</div>
+</div>
+</section>
+<footer>
+<div class="wrap">
+<div class="foot-brand">
+<img alt="Logo Dulce Aroma" loading="lazy" src="img/logo.webp"/>
+<div>
+<div style="font-family:'Fraunces',serif;">Dulce Aroma Floristería</div>
+<div style="font-size:0.82rem;color:var(--ink-suave);">Medellín, Colombia</div>
+</div>
+</div>
+<nav>
+<a href="#nosotros">Nosotros</a><a href="#inspiraciones">Inspiraciones</a>
+<a href="#catalogo">Colecciones</a>
+<a href="https://wa.me/573148325657?text=Hola%2C%20vi%20su%20p%C3%A1gina%20web%20de%20Dulce%20Aroma%20y%20quisiera%20informaci%C3%B3n%20sobre%20sus%20arreglos%20florales." rel="noopener" target="_blank">WhatsApp: 314 832 5657</a>
+<a href="https://www.facebook.com/profile.php?id=61593890547009" rel="noopener" target="_blank">Facebook</a>
+</nav>
+</div>
+<p class="copy">© 2026 Dulce Aroma Floristería · Sitio hecho con cariño para pedidos por WhatsApp.</p>
+</footer>
+</div>
+
+<script>
+(function(){
+  const productos = [
+    { nombre:'Arreglo en tonos lila', categoria:'novias', imagen:'img/novias/arreglo-novia-01.webp' },
+    { nombre:'Bouquet romántico', categoria:'novias', imagen:'img/novias/arreglo-novia-02.webp' },
+    { nombre:'Bouquet blanco y rosa', categoria:'novias', imagen:'img/novias/arreglo-novia-03.webp' },
+    { nombre:'Bouquet naranja y morado', categoria:'novias', imagen:'img/novias/arreglo-novia-04.webp' }
+  ];
+
+  const grid = document.getElementById('galeria-grid');
+  const empty = document.getElementById('galeria-empty');
+  const filtros = document.querySelectorAll('.galeria-filtro');
+
+  function render(filtro='todos'){
+    grid.innerHTML='';
+    const visibles = productos.filter(p => filtro === 'todos' || p.categoria === filtro);
+    empty.style.display = visibles.length ? 'none' : 'block';
+
+    visibles.forEach(p => {
+      const card = document.createElement('figure');
+      card.className = 'galeria-card';
+      card.innerHTML = `
+        <img src="${p.imagen}" alt="${p.nombre}" loading="lazy">
+        <figcaption>
+          <strong>${p.nombre}</strong>
+          <span>${p.categoria.charAt(0).toUpperCase()+p.categoria.slice(1)}</span>
+        </figcaption>
+      `;
+      grid.appendChild(card);
+    });
+  }
+
+  filtros.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filtros.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      render(btn.dataset.filter);
+    });
+  });
+
+  render();
+})();
+</script>
+<script>
+// --- vine signature: draws a soft wavy line down the page with leaf marks at each section ---
+(function(){
+  const svg = document.getElementById('vine-svg');
+  const path = document.getElementById('vine-line');
+  const page = document.getElementById('vine-page');
+
+  function buildVine(){
+    const h = page.scrollHeight;
+    const w = window.innerWidth;
+    svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+    svg.setAttribute('width', w);
+    svg.setAttribute('height', h);
+
+    const marginX = Math.min(48, w*0.03);
+    const amp = Math.min(26, w*0.015);
+    let d = `M ${marginX} 0`;
+    const step = 220;
+    let toggle = 1;
+    for(let y = step; y < h; y += step){
+      const cx = marginX + amp*toggle;
+      d += ` Q ${cx} ${y-step/2}, ${marginX} ${y}`;
+      toggle *= -1;
+    }
+    path.setAttribute('d', d);
+
+    // clear old leaf marks
+    svg.querySelectorAll('.leaf-mark').forEach(n=>n.remove());
+
+    // place small leaf marks at each section top
+    document.querySelectorAll('section, footer').forEach((sec) => {
+      const rect = sec.getBoundingClientRect();
+      const y = rect.top + window.scrollY + 40;
+      const leaf = document.createElementNS('http://www.w3.org/2000/svg','g');
+      leaf.setAttribute('class','vine-mark leaf-mark');
+      leaf.setAttribute('data-y', y);
+      leaf.innerHTML = `<circle cx="${marginX}" cy="${y}" r="5" fill="none" stroke="#c88a93" stroke-width="1.4"/>
+        <path d="M ${marginX} ${y-9} q 7 4 0 9 q -7 -5 0 -9 Z" fill="#c88a93" opacity="0.85"/>`;
+      svg.appendChild(leaf);
+    });
+  }
+
+  buildVine();
+  window.addEventListener('resize', buildVine);
+
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('show'); }
+    });
+  }, {threshold:0.4});
+
+  function observeMarks(){
+    document.querySelectorAll('.leaf-mark').forEach(m=>io.observe(m));
+  }
+  setTimeout(observeMarks, 60);
+})();
+</script>
+</body>
+</html>
