@@ -1,0 +1,181 @@
+/* --- Estilos de las páginas por ocasión --- */
+
+.lp-breadcrumb{
+  font-size:0.82rem;
+  color:var(--ink-suave);
+  padding-top:22px;
+}
+.lp-breadcrumb a{color:var(--rosa-polvo);text-decoration:none;}
+.lp-breadcrumb a:hover{text-decoration:underline;}
+.lp-breadcrumb span[aria-hidden]{margin:0 8px;opacity:.55;}
+.lp-breadcrumb span[aria-current]{color:var(--verde-hoja);font-weight:500;}
+
+.lp-hero{padding:28px 0 56px;}
+.lp-hero .wrap{
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  gap:52px;
+  align-items:center;
+}
+.lp-hero .eyebrow{margin-bottom:10px;}
+.lp-hero h1{
+  font-size:clamp(2rem,4.2vw,3.1rem);
+  line-height:1.08;
+  letter-spacing:-0.02em;
+}
+.lp-hero .lead{
+  margin-top:18px;
+  font-size:1.03rem;
+  line-height:1.6;
+  color:var(--ink-suave);
+  max-width:48ch;
+}
+.lp-hero .hero-ctas{margin-top:26px;}
+.lp-hero .hero-note{margin-top:16px;}
+.lp-hero figure{
+  border-radius:22px 96px 22px 96px;
+  overflow:hidden;
+  box-shadow:var(--sombra);
+  background:#e8dfd2;
+}
+.lp-hero figure img{
+  width:100%;
+  height:auto;
+  aspect-ratio:4/5;
+  object-fit:cover;
+  display:block;
+}
+
+.lp-content{background:var(--crema-suave);padding:60px 0;}
+.lp-content + .lp-content{padding-top:0;}
+.lp-block{max-width:74ch;margin:0 auto 34px;}
+.lp-block:last-child{margin-bottom:0;}
+.lp-block h2{
+  font-size:clamp(1.5rem,2.6vw,2.1rem);
+  line-height:1.15;
+  margin-bottom:14px;
+}
+.lp-block h3{
+  font-family:'Fraunces',serif;
+  font-size:1.15rem;
+  font-weight:500;
+  color:var(--verde-hoja);
+  margin-bottom:8px;
+}
+.lp-block p,
+.lp-block li{
+  font-size:0.98rem;
+  line-height:1.7;
+  color:var(--ink-suave);
+}
+.lp-block p + p{margin-top:14px;}
+.lp-block ul{
+  margin:6px 0 0;
+  padding-left:20px;
+  display:grid;
+  gap:10px;
+}
+
+.lp-galeria{background:var(--crema);padding:60px 0;}
+.lp-galeria .section-head{margin-bottom:34px;}
+.lp-galeria .grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+}
+.lp-card{
+  margin:0;
+  border-radius:18px;
+  overflow:hidden;
+  background:#fff;
+  border:1px solid var(--borde);
+  box-shadow:0 18px 36px -28px rgba(22,38,29,.5);
+}
+.lp-card img{
+  width:100%;
+  height:auto;
+  aspect-ratio:4/5;
+  object-fit:cover;
+  display:block;
+  transition:transform .35s ease;
+}
+.lp-card:hover img{transform:scale(1.04);}
+.lp-card figcaption{
+  padding:12px 14px;
+  font-size:0.83rem;
+  line-height:1.45;
+  color:var(--ink-suave);
+}
+
+.lp-faq{background:var(--crema);padding:60px 0;}
+.lp-faq h2{
+  text-align:center;
+  font-size:clamp(1.5rem,2.6vw,2.1rem);
+  margin-bottom:30px;
+}
+
+.lp-relacionadas{background:var(--crema-suave);padding:48px 0;}
+.lp-relacionadas h2{
+  font-size:1.25rem;
+  text-align:center;
+  margin-bottom:18px;
+}
+.lp-relacionadas ul{
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  justify-content:center;
+}
+.lp-relacionadas a{
+  display:inline-block;
+  padding:10px 18px;
+  border:1px solid var(--borde);
+  border-radius:999px;
+  background:var(--crema);
+  color:var(--verde-hoja);
+  font-size:0.9rem;
+  text-decoration:none;
+  transition:background .2s ease, border-color .2s ease;
+}
+.lp-relacionadas a:hover{
+  background:#fff;
+  border-color:rgba(22,38,29,.3);
+}
+
+.lp-cta-sec{background:var(--crema);padding:0 0 64px;}
+.lp-cta{
+  background:linear-gradient(135deg, var(--verde-hoja), var(--verde-profundo));
+  background-color:var(--verde-profundo);
+  color:var(--crema);
+  border-radius:26px;
+  padding:52px 36px;
+  text-align:center;
+}
+.lp-cta h2{
+  font-size:clamp(1.6rem,3vw,2.2rem);
+  margin-bottom:12px;
+}
+.lp-cta p{
+  color:rgba(251,245,236,0.9);
+  max-width:54ch;
+  margin:0 auto 24px;
+}
+
+@media (max-width: 1000px){
+  .lp-galeria .grid{grid-template-columns:repeat(3,1fr);}
+}
+@media (max-width: 860px){
+  .lp-hero{padding-top:8px;}
+  .lp-hero .wrap{grid-template-columns:1fr;gap:28px;}
+  .lp-hero figure{order:-1;}
+  .lp-hero figure img{aspect-ratio:4/3;}
+  .lp-galeria .grid{grid-template-columns:repeat(2,1fr);}
+  .lp-cta{padding:40px 24px;}
+}
+@media (max-width: 520px){
+  .lp-galeria .grid{grid-template-columns:1fr;}
+  .lp-block{text-align:left;}
+}
